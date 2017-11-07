@@ -1,8 +1,7 @@
 site_name: VCselection
 site_description: 'Introduction to Julia Package VCselection'
 site_author: 'Jing Zhai'
-site_url: 'https://VCselection.readthedocs.io/en/latest/'
-
+site_url: 'http://vcselection.readthedocs.io/en/latest/'
 pages:
     - Home: index.md
     - Installation: installation.md
