@@ -11,7 +11,7 @@ The type of files involved in this package can be divided into two categories: i
 
 # Kernel Distance Matrices files
 
-UniFrac is a distance matrix used for comparing biological communities. More information about the UniFrac distance is [here](https://en.wikipedia.org/wiki/UniFrac). UniFrac distance can be calculated using Julia package [_PhylogeneticDistance_](https://github.com/JingZhai63/PhylogeneticDistance.jl). Microbiome count file and phylogenetic tree file are needed. The distance matrix need be transformed to positive-definite kernel matrix and be scaled to have unit Frobenius norm.  
+UniFrac is a distance matrix used for comparing biological communities. More information about the UniFrac distance is [here](https://en.wikipedia.org/wiki/UniFrac). UniFrac distance can be calculated using Julia package [_PhylogeneticDistance.jl_](https://github.com/JingZhai63/PhylogeneticDistance.jl). Microbiome count file and phylogenetic tree file are needed. The distance matrix need be transformed to positive-definite kernel matrix and be scaled to have unit Frobenius norm.  
 
 # Covariates file
 
@@ -20,22 +20,22 @@ Covariates file is a .txt file that contains the values of covariates. In covari
 If a specific covariate value is missing, please impute by mean.  If no covariates file is provided, the covariates matrix **X** will be automatically set to a _n_-by-1 matrix with all elements equal to 1, where n is the number of individuals.
 
 ```txt
-"subjectID" "microbiomeID" "age" "sex" "smoker"
-X001		X001T1	57	0	1
-X001		X001T2	57	0	1
-X001 	X001T3	57	0	1
-X002		X002T1	26	1	1
-X002		X002T2	26	1	1
-X002		X002T3	26	1	1
-X003		X003T1	27	0	1
-X003		X003T2	27	0	1
-X003		X003T3	27	0	1
-X004		X004T1	44	0	1
-X004		X004T2	44	0	1
-X004		X004T3	44	0	1
-X005		X005T1	38	0	1
-X005		X005T2	38	0	1
-X005		X005T3	38	0	1
+subjectID   microbiomeID age sex smoker
+X001		X001T1	     57	 0	 1
+X001		X001T2	     57	 0	 1
+X001 	    X001T3	     57	 0	 1
+X002		X002T1	     26	 1	 1
+X002		X002T2	     26	 1	 1
+X002		X002T3	     26	 1	 1
+X003		X003T1	     27	 0	 1
+X003		X003T2	     27	 0	 1
+X003		X003T3	     27	 0	 1
+X004		X004T1	     44	 0	 1
+X004		X004T2	     44	 0	 1
+X004		X004T3	     44	 0	 1
+X005		X005T1	     38	 0	 1
+X005		X005T2	     38	 0	 1
+X005		X005T3	     38	 0	 1
 ```
 
 # Phenotype file 
@@ -44,28 +44,29 @@ Phenotype file is a txt file that contains the values of phenotypes. In phenotyp
 
 * Subject ID
 * Measurement ID
-* Time Point
+* Time Point (optional)
 * Phenotypes
 
 ```txt
-"subjectID"      "microbiomeID" "y1"                    "y2"                  "y3"                   "y4"                   "y5"
-X001			X001T1		25.47625505	31.68266284	27.63805982	28.65881349	23.93537075
-X001			X001T2		24.64079399	31.2348356	26.94997667	29.55297632	26.71868439
-X001			X001T3		24.93957563	30.80621089	30.21994675	28.9160571	26.61401479
-X002			X002T1		12.05899015	15.64851403	14.65772794	11.88751962	14.36242423
-X002			X002T2		14.33583163	14.00079888	16.12400259	11.93163584	15.0027127
-X002			X002T3		11.45724733	15.7380116	15.12183368	12.66567158	15.15858036
-X003			X003T1		12.93804869	9.977409278	13.75288042	14.32158349	12.65765104
-X003			X003T2		10.49035571	12.08767453	14.26815982	12.13905067	13.3291567
-X003			X003T3		12.42898212	10.59607919	13.9706309	11.73030896	12.47932868
-X004			X004T1		20.26107286	24.75744212	22.69600831	21.645191	20.18550653
-X004			X004T2		21.25620395	25.76615493	23.17473835	21.50946595	20.30114608
-X004			X004T3		20.65251182	26.15018955	22.12612909	20.72239947	20.5354966
-X005			X005T1		13.94408194	20.73833674	18.9831627	15.65224559	19.46986625
-X005			X005T2		15.2615871	21.50167569	17.06161367	15.91519641	20.53206818
-X005			X005T3		16.43634319	19.54563858	18.40833528	16.71131287	19.86249035
+"subjectID"    "microbiomeID" "y1"   "y2"   "y3"   "y4"   "y5"
+X001			X001T1		   25.47  31.68  27.63  28.65  23.93
+X001			X001T2		   24.64  31.23  26.94  29.55  26.71
+X001			X001T3		   24.93  30.80  30.21  28.91  26.61
+X002			X002T1		   12.05  15.64  14.65  11.88  14.36
+X002			X002T2		   14.33  14.00  16.12  11.93  15.00
+X002			X002T3		   11.45  15.73  15.12  12.66  15.15
+X003			X003T1		   12.93  9.977  13.75  14.32  12.65
+X003			X003T2		   10.49  12.08  14.26  12.13  13.32
+X003			X003T3		   12.42  10.59  13.97  11.73  12.47
+X004			X004T1		   20.26  24.75  22.69  21.64  20.18
+X004			X004T2		   21.25  25.76  23.17  21.50  20.30
+X004			X004T3		   20.65  26.15  22.12  20.72  20.53
+X005			X005T1		   13.94  20.73  18.98  15.65  19.46
+X005			X005T2		   15.26  21.50  17.06  15.91  20.53
+X005			X005T3		   16.43  19.54  18.40  16.71  19.86
+
 ```
 
 # Output file
 
-Output file is a flat file that contains p-values and other information for each phenotypes under certain testing scheme. In output file, each line represents for one phenotype in phenotypes file(the first line is the header).
+Output files have two files: one includes the variance components estimation and one  contains negative log-likelihood under each tuning parameter. In estimation output file, each line represents for one variance component and each column represents for one tuning parameter. 
