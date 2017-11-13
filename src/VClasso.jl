@@ -4,7 +4,8 @@
 #
 using Polynomial
 function VClasso(y::Vector{Float64}, X::Matrix{Float64},
-                 V::Array{Matrix{Float64}, 1},
+                 V::Array{Matrix{Float64}, 1}, # Z::Matrix{Float64}, # add Z for Longitudinal design
+                 λfactor::Vector{Int64}, # 0 is not penalized, 1 is penalized to 1.0
                        print::Bool=false, λgrid::Vector{Float64}=[0.0])
   n = length(y)   # no. observations
   n2 = n * n
@@ -39,7 +40,7 @@ function VClasso(y::Vector{Float64}, X::Matrix{Float64},
    maxiter = 10000::Int
    tol = 1e-4
    λ = λgrid[k];
-   logllasso = -logl + λ * sumabs(σ[1:end-1]);
+   logllasso = -logl + λ * sumabs(λfactor[1:end].*σ[1:end-1]);
    for i = 1:maxiter
     if print
       println(i, " ",  "Obj ", logllasso, " ", "logL", logl)
@@ -49,7 +50,7 @@ function VClasso(y::Vector{Float64}, X::Matrix{Float64},
     fill!(Ω, 0.0);
     for l = 1: m - 1
       quartic = BLAS.dot(n2, Ωinv, 1, V[l], 1)
-      cubic = λ
+      cubic = λ * λfactor[l]
       constant = -σ[l]^4 * ((v'* V[l])*v)[]
       @inbounds σ[l] = min_root(quartic, cubic, constant, l, V, σ, res)
       @inbounds σ2[l] = σ[l] .^2
@@ -69,7 +70,7 @@ function VClasso(y::Vector{Float64}, X::Matrix{Float64},
     # check convergence
     logllassoold = logllasso
     logl = loglConst - 0.5 * logdet(Ωchol) - 0.5 * dot(res, v)
-    logllasso = -logl + λ * sumabs(σ[1:end-1]);
+    logllasso = -logl + λ * sumabs(λfactor[1:end].*σ[1:end-1]);
     if abs(logllasso - logllassoold) < tol * (abs(logllassoold) + 1.0)
       #println(i," ", logl)
       Obj = logllasso
