@@ -41,7 +41,7 @@ For longitudinal study design, phenotype (outcome variable of interest) and micr
 
 $\bf{y}=\bf{X\beta}+\bf{Zb}+\sum_l^L h_l+\bf{\epsilon}$
 
-$h_l \sim N(\bf{0}, \sigma_{gl}^2\bf{K_l}) $
+$h_l \sim \mathcal{N}(\bf{0}, \sigma_{gl}^2\bf{K_l}) $
 
 $\bf{b} \sim  \mathcal{N}(0,\bf{Z}\sigma_d^2\bf{Z}')$
 
