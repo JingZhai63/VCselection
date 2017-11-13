@@ -23,7 +23,7 @@ If a specific covariate value is missing, please impute by mean.  If no covariat
 subjectID   microbiomeID age sex smoker
 X001		X001T1	     57	 0	 1
 X001		X001T2	     57	 0	 1
-X001 	    X001T3	     57	 0	 1
+X001 	X001T3	     57	 0	 1
 X002		X002T1	     26	 1	 1
 X002		X002T2	     26	 1	 1
 X002		X002T3	     26	 1	 1
