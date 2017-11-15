@@ -15,7 +15,7 @@
 
 function microVClasso(args...; resFile::String= "", covFile::String = "",
   Vpath::String = "", outpath::String = "",
-  covIdx ::Array{Int, 1} = [1,2], resIdx ::Int = 1, idIdx::Int = 1,
+  covIdx ::Array{Int, 1} = [3,4], resIdx ::Int = 3, idIdx::Int = 1,
   yhead::Bool = true, xhead::Bool = true, longitudinal::Bool = false,
   λgrid::Array{Float64, 1} = Float64[], print::Bool = false,
   λfactor::Array{Float64, 1} = Float64[], criterion::String = "AIC")
@@ -83,7 +83,7 @@ function microVClasso(args...; resFile::String= "", covFile::String = "",
         else
           psd = readcsv(string(Vpath,"/",vclist[i]))
         end
-        push!(vc, psd[:,:])
+        push!(vc, Hermitian(psd[:,:]))
       end
       push!(vc, eye(n,n)) # add the error term
     end
@@ -97,11 +97,10 @@ function microVClasso(args...; resFile::String= "", covFile::String = "",
     end
 
     if longitudinal
-      Lasso = LVClasso(y, X, vc, λfactor,false, λgrid)
+      Lasso = VClasso(y, X, vc, λfactor,false, λgrid)
     else
       λfactor = ones(Int,length(vc)-1)
-      Lasso = LVClasso(y, X, vc, λfactor,false, λgrid)
-#      Lasso = VClasso(y, X, vc, false, λgrid)
+      Lasso = VClasso(y, X, vc, λfactor,false, λgrid)
     end
 
     σ2 = Lasso[1][1:(end-1),:]
