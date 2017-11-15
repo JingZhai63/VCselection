@@ -10,10 +10,8 @@ Then you can use the following command to verify that the package has been insta
 
 ```julia
 julia> using VCselection
-julia> VClasso()
-VClasso (generic function with 1 method)
+julia> microVClasso()
+microVClasso (generic function with 1 method)
 ```
 
 Also, to install Jing Zhai's Julia package _PhylogeneticDistance.jl_, please see [installation](http://PhylogeneticDistancejl.readthedocs.io/en/latest/installation/)
-
-

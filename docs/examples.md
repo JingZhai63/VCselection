@@ -13,14 +13,14 @@ These data files come with our package, and they are available at here.
 Open up a Julia session and type
 * setting working directory
 ```julia
-julia> cd("~/.julia/v0.5/VCselection/docs/examples/baseline")
+julia> cd("PATH/TO/USERS/.julia/v0.5/VCselection/docs/examples/baseline")
 ```
 If `outpath` is not provided, then the output will be written to the working directory.
 
 * selection in cross-sectional design
 ```julia
 julia> using VCselection
-julia> microVClasso(Vpath = "/vc", resFile = "outcome/y.csv",  covFile = "covariate/X_5.csv", outpath = "out/")
+julia> microVClasso(Vpath = "vc", resFile = "outcome/y.csv",  covFile = "covariate/X_5.csv", outpath = "out/")
 ```
 
 You can also call microVClasso from command line. For example, to perform selection,
@@ -34,12 +34,12 @@ Note:
 * If the phenotype file and outcome file don't include the column names,
 ```julia
 julia> using VCselection
-julia> microVClasso(Vpath = "/vc", resFile = "outcome/y.csv",  covFile = "covariate/X_5.csv", outpath = "out/", yhead = false, xhead = false)
+julia> microVClasso(Vpath = "vc", resFile = "outcome/y.csv",  covFile = "covariate/X_5.csv", outpath = "out/", yhead = false, xhead = false)
 ```
 * If you want to specify the index of column for phenotype and covariate files,
 ```julia
 julia> using VCselection
-julia> microVClasso(Vpath = "/vc", resFile = "outcome/y.csv",  covFile = "covariate/X_5.csv", outpath = "out/", resIdx = 7, covIdx = [3,4], yhead = false, xhead = false)
+julia> microVClasso(Vpath = "vc", resFile = "outcome/y.csv",  covFile = "covariate/X_5.csv", outpath = "out/", resIdx = 7, covIdx = [3,4], yhead = false, xhead = false)
 ```
 
 # Option `λgrid`
@@ -47,14 +47,14 @@ If `λgrid` is provided,
 ```julia
 julia> using VCselection
 julia> λoptions = vcat(0.1, 0.2, 0.5, 1.0)
-julia> microVClasso(Vpath = "/vc", resFile = "outcome/y.csv",  covFile = "covariate/X_5.csv", outpath = "out/", λgrid = λoptions)
+julia> microVClasso(Vpath = "vc", resFile = "outcome/y.csv",  covFile = "covariate/X_5.csv", outpath = "out/", λgrid = λoptions)
 ```
 
 # Option `criterion`
 The default `criterion` is "AIC". Other options are "BIC", "Both" and "None". For example, if you want to output selection results using both "AIC" and "BIC",
 ```julia
 julia> using VCselection
-julia> microVClasso(Vpath = "/vc", resFile = "outcome/y.csv",  covFile = "covariate/X_5.csv", outpath = "out/", λgrid = λoptions, criterion = "Both")
+julia> microVClasso(Vpath = "vc", resFile = "outcome/y.csv",  covFile = "covariate/X_5.csv", outpath = "out/", λgrid = λoptions, criterion = "Both")
 ```
 
 ## Option `longitudinal`
@@ -63,14 +63,13 @@ If the microbiome taxonomic data is longitudinal,
 
 * setting working directory
 ```julia
-julia> cd("VCselection/docs/examples/longitudinal")
-julia> Vpath = string(pwd(), "/vc")
+julia> cd("PATH/TO/USERS/.julia/0.5/VCselection/docs/examples/longitudinal")
 ```
 
 * selection in longitudinal design
 ```julia
 julia> using VCselection
-julia> microVClasso(Vpath = "/vc", resFile = "outcome/y.csv",  covFile = "covariate/X_5.csv", outpath = "out/", longitudinal = true)
+julia> microVClasso(Vpath = "vc", resFile = "outcome/y.csv",  covFile = "covariate/X_5.csv", outpath = "out/", longitudinal = true)
 ```
 
 ## Option `λfactor`
@@ -80,5 +79,5 @@ This option is used for setting the penalization of each variance components. `�
 ```julia
 julia> using VCselection
 julia> penaltyIdx = vcat(0, ones(L))
-julia> microVClasso(Vpath = "/vc", resFile = "outcome/y.csv",  covFile = "covariate/X_5.csv", outpath = "out/", longitudinal = true, λfactor = penaltyIdx)
+julia> microVClasso(Vpath = "vc", resFile = "outcome/y.csv",  covFile = "covariate/X_5.csv", outpath = "out/", longitudinal = true, λfactor = penaltyIdx)
 ```

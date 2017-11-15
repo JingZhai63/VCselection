@@ -138,7 +138,7 @@ function microVClasso(args...; resFile::String= "", covFile::String = "",
       writedlm(string(outpath,"BIC_all.txt"),hcat(λgrid,BIC))
       writedlm(string(outpath,"vc_BIC_",λgrid[indmin(BIC)],".txt"),outBIC)
       return σ2, nloglik, BIC, outBIC
-    elseif criteriion == "Both"
+    elseif criterion == "Both"
       writedlm(string(outpath,"AIC_BIC_all.txt"),hcat(λgrid,AIC,BIC))
       writedlm(string(outpath,"vc_AIC_",λgrid[indmin(AIC)],".txt"),outAIC)
       writedlm(string(outpath,"vc_BIC_",λgrid[indmin(BIC)],".txt"),outBIC)
