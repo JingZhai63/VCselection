@@ -73,7 +73,7 @@ function microVClasso(args...; resFile::String= "", covFile::String = "",
           ZZ = cat([1,2],ZZ,ones(dic[id[i]],dic[id[i]]))
         end
         λfactor = vcat(0,ones(Int,length(vclist)))
-        push!(vc,ZZ)
+        push!(vc,Hermitian(ZZ))
         vcname = vcat("ZZ",vcname)
       end
 

@@ -25,7 +25,7 @@ function VClasso(y::Vector{Float64}, X::Matrix{Float64},
    for j = 1:m
      BLAS.axpy!(n2, σ2[j], V[j], 1, Ω, 1)
    end
-   Ωchol = cholfact(Ω);
+   Ωchol = cholfact(Hermitian(Ω));
    Ωinv = inv(Ωchol);
    res = y - X * β;
    v = Ωchol \ res ;
@@ -61,7 +61,7 @@ function VClasso(y::Vector{Float64}, X::Matrix{Float64},
     σ2[m] *= BLAS.nrm2(v) / sqrt(trace(Ωinv))
     σ[m] = sqrt(σ2[m])
     BLAS.axpy!(n2, σ2[m], V[m], 1, Ω, 1)
-    Ωchol = cholfact(Ω, :L);
+    Ωchol = cholfact(Hermitian(Ω), :L);
     Ωinv = inv(Ωchol);
     Xnew = Ωchol[:L] \ X;
     ynew = Ωchol[:L] \ y;
@@ -116,7 +116,7 @@ function min_root(quartic, cubic, constant, index, V, σ, res)
     for j = 1:m
       BLAS.axpy!(n2, σ2[j], V[j], 1, Ω, 1)
     end
-    Ωchol = cholfact(Ω);
+    Ωchol = cholfact(Hermitian(Ω));
     Ωinv = inv(Ωchol);
     v = Ωchol \ res ;
     ##
