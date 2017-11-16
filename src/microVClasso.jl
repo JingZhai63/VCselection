@@ -30,8 +30,8 @@ function microVClasso(args...; resFile::String= "", covFile::String = "",
         y = phenotye[2:end,resIdx];
         nper = phenotye[2:end,idIdx]
       else
-        y = y[:,resIdx];
-        nper = y[:,idIdx]
+        y = phenotye[:,resIdx];
+        nper = phenotye[:,idIdx]
       end
       y = convert(Array{Float64, 1}, y);
     end
