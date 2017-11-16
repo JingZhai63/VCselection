@@ -25,10 +25,10 @@ function microVClasso(args...; resFile::String= "", covFile::String = "",
       error("microVClasso:ymissing\n",
       "# need to input responses file name");
     else
-      y = readcsv(resFile)
+      phenotye = readcsv(resFile)
       if yhead
-        y = y[2:end,resIdx];
-        nper = y[2:end,idIdx]
+        y = phenotye[2:end,resIdx];
+        nper = phenotye[2:end,idIdx]
       else
         y = y[:,resIdx];
         nper = y[:,idIdx]
