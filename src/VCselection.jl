@@ -14,12 +14,14 @@ using StatsBase
   elseif VERSION < v"0.5-" && VERSION >= v"0.4-"
     export
     microVClasso,
-    Polynomial,
+#    Polynomial,
     VClasso
 
     include("microVClasso.jl")
-    include("Polynomial.jl")
     include("VClasso.jl")
+    include("Polynomial.jl")
+    using Polynomial
+
   end
 
 end # module
