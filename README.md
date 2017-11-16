@@ -16,7 +16,7 @@ Please see the detailed documents in [Read the Docs](http://vcselection.readthed
 
 # Installation
 
-To install _VCselection_, open up Julia and then type
+To install _VCselection_, open up Julia v0.5 and then type
 
 ```julia
 julia> Pkg.clone("https://github.com/JingZhai63/VCselection.git")
